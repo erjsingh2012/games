@@ -74,6 +74,15 @@
       transition: transform 0.3s ease, margin-bottom 0.3s ease;
     }
 
+    .board-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      transition: padding 0.3s ease;
+    }
+
     /* Controls */
 
     .game-area {
@@ -172,7 +181,9 @@
       <div class="panel top-panel-2">Player Info Panel</div>
 
       <div class="game-area">
-        <div class="board" id="board"></div>
+        <div class="board-wrapper">
+          <div class="board" id="board"></div>
+        </div>
       </div>
 
       <div class="panel bottom-panel-1" id="bottom-panel-1">
