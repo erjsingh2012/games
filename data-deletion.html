@@ -326,6 +326,14 @@
       updateScale();
       updateDebugPanel();
     });
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        updateScale();
+        updateDebugPanel();
+      }, 100); // delay ensures stable height
+    });
   </script>
 
 </body>
