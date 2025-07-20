@@ -13,12 +13,12 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      height: 100%;
       width: 100%;
       background-color: #1e4d9b;
       display: flex;
       justify-content: center;
-      align-items: start;
+      align-items: center;
       font-family: sans-serif;
       overflow: hidden;
     }
@@ -31,15 +31,12 @@
     }
 
     .game-frame {
+      width: 561px;
+      height: 100vh;
+      background-color: #fff;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      /* Push top & bottom apart */
-      align-items: stretch;
-      height: 100dvh;
-      gap: 6px;
-      /* Optional spacing between blocks */
-      box-sizing: border-box;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
     }
 
     .panel {
@@ -328,14 +325,6 @@
     window.addEventListener('load', () => {
       updateScale();
       updateDebugPanel();
-    });
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        updateScale();
-        updateDebugPanel();
-      }, 100); // delay ensures stable height
     });
   </script>
 
