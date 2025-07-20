@@ -169,12 +169,28 @@
       cursor: pointer;
       z-index: 10;
     }
+
+    .debug-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.85);
+  color: #00ff99;
+  font-size: 12px;
+  padding: 6px 8px;
+  font-family: monospace;
+  z-index: 999;
+  white-space: pre-line;
+  pointer-events: none;
+}
   </style>
 </head>
 
 <body>
 
   <div class="scale-wrapper" id="scale-wrapper">
+    <div class="debug-panel" id="debug-panel"></div>
     <div class="game-frame">
 
       <div class="panel top-panel-1">WORDS with Friends 2</div>
@@ -232,6 +248,27 @@
     });
 
 
+    function updateDebugPanel() {
+      const debugPanel = document.getElementById("debug-panel");
+
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+
+      const gameFrame = document.querySelector('.game-frame');
+      const board = document.querySelector('.board');
+
+      const gameRect = gameFrame.getBoundingClientRect();
+      const boardRect = board.getBoundingClientRect();
+
+      debugPanel.textContent = `
+[ Debug Info Panel ]
+📱 Screen: ${screenWidth} x ${screenHeight}
+🎮 Game Frame: ${Math.round(gameRect.width)} x ${Math.round(gameRect.height)}
+🧩 Board: ${Math.round(boardRect.width)} x ${Math.round(boardRect.height)}
+🔍 Scale: ${document.getElementById('scale-wrapper').style.transform || 'none'}
+📦 Panel 4 Visible: ${document.getElementById('bottom-panel-4').style.display}
+  `.trim();
+    }
 
 
     function updateScale() {
@@ -282,6 +319,14 @@
 
     window.addEventListener('resize', updateScale);
     window.addEventListener('load', updateScale);
+    window.addEventListener('resize', () => {
+      updateScale();
+      updateDebugPanel();
+    });
+    window.addEventListener('load', () => {
+      updateScale();
+      updateDebugPanel();
+    });
   </script>
 
 </body>
